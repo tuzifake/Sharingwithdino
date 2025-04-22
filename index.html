@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Comic Neue', cursive;
-            background: #f0f4f8; /* Màu nền nhẹ để làm nổi hiệu ứng */
+            background: #f0f4f8;
             color: #333;
             transition: background 0.3s, color 0.3s;
             overflow-x: hidden;
@@ -40,7 +40,7 @@
             background-color: #ffccff !important;
         }
         .card {
-            background: #fce7f3; /* Màu hồng nhạt */
+            background: #fce7f3;
             border: 2px solid #ff69b4;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
@@ -95,11 +95,11 @@
         }
         .dark-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             background: #ff69b4;
             color: white;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
             transition: background 0.3s;
@@ -111,12 +111,50 @@
             background: #e0f7fa;
             border: 2px solid #00bcd4;
             border-radius: 10px;
-            padding: 16px;
-            margin: 8px;
+            padding: 12px;
+            margin: 8px 0;
         }
         body.dark .product-card {
             background: #263238;
             border-color: #00bcd4;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            header {
+                padding: 1.5rem 0;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .tab-link {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+            section {
+                padding: 1.5rem 1rem;
+            }
+            .card, .product-card {
+                padding: 1rem;
+            }
+            .accordion-button {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+            .file-button {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+            .copy-button {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -129,26 +167,26 @@
 
     <!-- Header -->
     <header class="text-white text-center py-12">
-        <img src="images/avatar.jpg" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
-        <h1 class="text-5xl font-bold text-pink-300">[Tên bạn]</h1>
-        <p class="text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
+        <img src="images/avatar.jpg" alt="Ảnh đại diện" class="rounded-full w-24 h-24 md:w-36 md:h-36 mx-auto mb-4 border-4 border-pink-400">
+        <h1 class="text-5xl md:text-5xl font-bold text-pink-300">[Tên bạn]</h1>
+        <p class="text-xl md:text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
     </header>
 
     <!-- Navigation Tabs -->
     <nav class="bg-white shadow-lg dark:bg-gray-900">
         <div class="max-w-4xl mx-auto px-4 py-4">
-            <ul class="flex justify-center space-x-4 flex-wrap">
+            <ul class="flex flex-col md:flex-row justify-center gap-2 md:space-x-4">
                 <li>
-                    <button onclick="showTab('about')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Giới thiệu</button>
+                    <button onclick="showTab('about')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Giới thiệu</button>
                 </li>
                 <li>
-                    <button onclick="showTab('accounts')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Tài khoản miễn phí</button>
+                    <button onclick="showTab('accounts')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Tài khoản miễn phí</button>
                 </li>
                 <li>
-                    <button onclick="showTab('support')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Ủng hộ tôi</button>
+                    <button onclick="showTab('support')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Ủng hộ tôi</button>
                 </li>
                 <li>
-                    <button onclick="showTab('products')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Các sản phẩm mình có bán</button>
+                    <button onclick="showTab('products')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Các sản phẩm mình có bán</button>
                 </li>
             </ul>
         </div>
@@ -158,14 +196,14 @@
     <section class="max-w-4xl mx-auto py-10 px-4">
         <!-- Giới thiệu Tab -->
         <div id="about" class="tab-content active">
-            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Giới thiệu về mình</h2>
-            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Giới thiệu về mình</h2>
+            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200 text-sm md:text-base">
                 Xin chào! Mình là [Tên bạn], một [nghề nghiệp, ví dụ: sinh viên/lập trình viên]. Mình thích chia sẻ kiến thức và tài nguyên với mọi người. Trang này là nơi mình giới thiệu bản thân và chia sẻ các tài khoản miễn phí để giúp mọi người trải nghiệm các dịch vụ thú vị! 🌟
             </p>
             <div class="card p-6">
-                <h3 class="text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Liên hệ với mình</h3>
-                <p class="text-gray-700 dark:text-gray-300">Bạn có thể liên lạc với mình qua:</p>
-                <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300">
+                <h3 class="text-xl md:text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Liên hệ với mình</h3>
+                <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Bạn có thể liên lạc với mình qua:</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300 text-sm md:text-base">
                     <li>Email: <a href="mailto:[email-của-bạn]" class="text-blue-500 hover:underline">[email-của-bạn]</a></li>
                     <li>GitHub: <a href="https://github.com/[username-của-bạn]" class="text-blue-500 hover:underline">[username-của-bạn]</a></li>
                     <li>X: <a href="https://x.com/[username-x-của-bạn]" class="text-blue-500 hover:underline">[username-x-của-bạn]</a></li>
@@ -175,7 +213,7 @@
 
         <!-- Tài khoản miễn phí Tab -->
         <div id="accounts" class="tab-content">
-            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Tài khoản miễn phí</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Tài khoản miễn phí</h2>
             <!-- Accordion cho các danh mục -->
             <div class="space-y-4">
                 <!-- ChatGPT -->
@@ -185,7 +223,7 @@
                     </button>
                     <div id="chatgpt" class="accordion-content px-6 py-4">
                         <div class="file-list flex flex-wrap gap-2" data-category="chatgpt"></div>
-                        <div id="chatgpt-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
+                        <div id="chatgpt-content" class="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base"></div>
                     </div>
                 </div>
 
@@ -196,7 +234,7 @@
                     </button>
                     <div id="spotify" class="accordion-content px-6 py-4">
                         <div class="file-list flex flex-wrap gap-2" data-category="spotify"></div>
-                        <div id="spotify-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
+                        <div id="spotify-content" class="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base"></div>
                     </div>
                 </div>
 
@@ -207,7 +245,7 @@
                     </button>
                     <div id="canva" class="accordion-content px-6 py-4">
                         <div class="file-list flex flex-wrap gap-2" data-category="canva"></div>
-                        <div id="canva-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
+                        <div id="canva-content" class="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base"></div>
                     </div>
                 </div>
 
@@ -218,60 +256,60 @@
                     </button>
                     <div id="duolingo" class="accordion-content px-6 py-4">
                         <div class="file-list flex flex-wrap gap-2" data-category="duolingo"></div>
-                        <div id="duolingo-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
+                        <div id="duolingo-content" class="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base"></div>
                     </div>
                 </div>
 
                 <!-- Hướng dẫn đăng nhập -->
                 <div class="card p-6 mt-6">
-                    <h3 class="text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Hướng dẫn đăng nhập</h3>
-                    <p class="text-gray-700 dark:text-gray-300">Dưới đây là hướng dẫn đăng nhập cho từng dịch vụ:</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300">
+                    <h3 class="text-xl md:text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Hướng dẫn đăng nhập</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Dưới đây là hướng dẫn đăng nhập cho từng dịch vụ:</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300 text-sm md:text-base">
                         <li><strong>ChatGPT</strong>: Truy cập <a href="https://chat.openai.com/auth/login" class="text-blue-500 hover:underline">chat.openai.com</a>, nhập email và mật khẩu từ tài khoản trên, nhấn "Log in". Nếu cần, hoàn thành CAPTCHA.</li>
                         <li><strong>Spotify</strong>: Vào <a href="https://www.spotify.com/login" class="text-blue-500 hover:underline">spotify.com/login</a>, nhập email và mật khẩu, nhấn "Log In".</li>
                         <li><strong>Canva</strong>: Truy cập <a href="https://www.canva.com/login" class="text-blue-500 hover:underline">canva.com/login</a>, nhập email và mật khẩu, nhấn "Log in". Có thể cần chọn "Continue with email".</li>
                         <li><strong>Duolingo</strong>: Vào <a href="https://www.duolingo.com" class="text-blue-500 hover:underline">duolingo.com</a>, nhấn "Login", nhập email và mật khẩu, nhấn "Log In".</li>
                     </ul>
-                    <p class="text-gray-700 dark:text-gray-300 mt-2">Lưu ý: Đừng thay đổi mật khẩu để mọi người cùng sử dụng nhé! 💖</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm md:text-base">Lưu ý: Đừng thay đổi mật khẩu để mọi người cùng sử dụng nhé! 💖</p>
                 </div>
             </div>
         </div>
 
         <!-- Ủng hộ tôi Tab -->
         <div id="support" class="tab-content">
-            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Ủng hộ tôi</h2>
-            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Ủng hộ tôi</h2>
+            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200 text-sm md:text-base">
                 Nếu bạn thấy trang web này hữu ích và muốn ủng hộ mình để duy trì hoạt động, bạn có thể giúp mình qua các cách sau nhé! 🌸
             </p>
             <div class="card p-6">
-                <h3 class="text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Thông tin ủng hộ</h3>
-                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+                <h3 class="text-xl md:text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Thông tin ủng hộ</h3>
+                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm md:text-base">
                     <li><strong>Chuyển khoản ngân hàng</strong>: [Tên ngân hàng], Số tài khoản: [Số tài khoản], Chủ tài khoản: [Tên bạn].</li>
                     <li><strong>Ví Momo</strong>: Số điện thoại: [Số điện thoại], Tên: [Tên bạn].</li>
                     <li><strong>PayPal</strong>: <a href="https://paypal.me/[username-paypal]" class="text-blue-500 hover:underline">[username-paypal]</a>.</li>
                 </ul>
-                <p class="text-gray-700 dark:text-gray-300 mt-4">Cảm ơn bạn nhiều lắm! Mọi sự ủng hộ đều giúp mình có thêm động lực chia sẻ nhiều hơn! 💖</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-4 text-sm md:text-base">Cảm ơn bạn nhiều lắm! Mọi sự ủng hộ đều giúp mình có thêm động lực chia sẻ nhiều hơn! 💖</p>
             </div>
         </div>
 
         <!-- Các sản phẩm mình có bán Tab -->
         <div id="products" class="tab-content">
-            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Các sản phẩm mình có bán</h2>
-            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Các sản phẩm mình có bán</h2>
+            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200 text-sm md:text-base">
                 Dưới đây là một số sản phẩm mình đang bán. Nếu bạn quan tâm, hãy liên hệ mình qua email hoặc X nhé! 🌟
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="product-card">
                     <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Sticker anime dễ thương</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Bộ sticker in hình các nhân vật anime, dán laptop, điện thoại cực xinh. Giá: 50.000 VNĐ/bộ.</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Bộ sticker in hình các nhân vật anime, dán laptop, điện thoại cực xinh. Giá: 50.000 VNĐ/bộ.</p>
                 </div>
                 <div class="product-card">
                     <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Móc khóa acrylic</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Móc khóa in hình nhân vật anime, bền đẹp, kèm dây đeo. Giá: 30.000 VNĐ/cái.</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Móc khóa in hình nhân vật anime, bền đẹp, kèm dây đeo. Giá: 30.000 VNĐ/cái.</p>
                 </div>
                 <div class="product-card">
                     <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Tài khoản premium</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Tài khoản premium Canva, Spotify, v.v., giá siêu rẻ. Liên hệ để biết thêm chi tiết!</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Tài khoản premium Canva, Spotify, v.v., giá siêu rẻ. Liên hệ để biết thêm chi tiết!</p>
                 </div>
             </div>
         </div>
@@ -279,11 +317,11 @@
 
     <!-- Footer -->
     <footer class="bg-purple-800 text-white text-center py-6 dark:bg-gray-900">
-        <p>© 2025 [Tên bạn]. Tất cả quyền được bảo lưu. 💖</p>
+        <p class="text-sm md:text-base">© 2025 [Tên bạn]. Tất cả quyền được bảo lưu. 💖</p>
         <div class="flex justify-center space-x-4 mt-2">
-            <a href="https://github.com/[username-của-bạn]" class="text-pink-300 hover:text-white">GitHub</a>
-            <a href="mailto:[email-của-bạn]" class="text-pink-300 hover:text-white">Email</a>
-            <a href="https://x.com/[username-x-của-bạn]" class="text-pink-300 hover:text-white">X</a>
+            <a href="https://github.com/[username-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">GitHub</a>
+            <a href="mailto:[email-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">Email</a>
+            <a href="https://x.com/[username-x-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">X</a>
         </div>
     </footer>
 
