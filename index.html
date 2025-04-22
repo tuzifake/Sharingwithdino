@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi, I'm Dino</title>
+    <title>Xin chào, mình là [Tên bạn]</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #f9e1e7, #c3e6ff);
+            color: #333;
         }
         .tab-content {
             display: none;
@@ -15,25 +18,48 @@
         .tab-content.active {
             display: block;
         }
+        .accordion-content {
+            display: none;
+        }
+        .accordion-content.active {
+            display: block;
+        }
+        header {
+            background: url('https://i.imgur.com/5jZ8k9s.jpg') no-repeat center/cover;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+        .tab-link, .accordion-button {
+            transition: all 0.3s ease;
+        }
+        .tab-link:hover, .accordion-button:hover {
+            transform: scale(1.05);
+            background-color: #ffccff !important;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
     <!-- Header -->
-    <header class="bg-blue-600 text-white text-center py-10">
-        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto mb-4">
-        <h1 class="text-4xl font-bold">Dino</h1>
-        <p class="text-lg mt-2">Welcome to my personal page!</p>
+    <header class="text-white text-center py-12">
+        <img src="https://via.placeholder.com/150" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
+        <h1 class="text-5xl font-bold text-pink-300">[Tên bạn]</h1>
+        <p class="text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
     </header>
 
     <!-- Navigation Tabs -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white shadow-lg">
         <div class="max-w-4xl mx-auto px-4 py-4">
             <ul class="flex justify-center space-x-4">
                 <li>
-                    <button onclick="showTab('about')" class="tab-link px-4 py-2 text-blue-600 font-semibold hover:bg-blue-100 rounded">About Me</button>
+                    <button onclick="showTab('about')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg">Giới thiệu</button>
                 </li>
                 <li>
-                    <button onclick="showTab('accounts')" class="tab-link px-4 py-2 text-blue-600 font-semibold hover:bg-blue-100 rounded">Free Accounts</button>
+                    <button onclick="showTab('accounts')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg">Tài khoản miễn phí</button>
                 </li>
             </ul>
         </div>
@@ -41,64 +67,132 @@
 
     <!-- Tab Content -->
     <section class="max-w-4xl mx-auto py-10 px-4">
-        <!-- About Me Tab -->
+        <!-- Giới thiệu Tab -->
         <div id="about" class="tab-content active">
-            <h2 class="text-3xl font-semibold text-center mb-6">About Me</h2>
-            <p class="text-gray-700 leading-relaxed">
-                Hi! I'm Dino, a [your profession, e.g., student/developer]. I love sharing knowledge and resources with the community. This page is where I introduce myself and share free accounts for various platforms to help others.
+            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600">Giới thiệu về mình</h2>
+            <p class="text-gray-800 leading-relaxed mb-6">
+                Xin chào! Mình là [Tên bạn], một [nghề nghiệp, ví dụ: sinh viên/lập trình viên]. Mình thích chia sẻ kiến thức và tài nguyên với mọi người. Trang này là nơi mình giới thiệu bản thân và chia sẻ các tài khoản miễn phí để giúp mọi người trải nghiệm các dịch vụ thú vị! 🌟
             </p>
+            <div class="card p-6">
+                <h3 class="text-2xl font-bold text-pink-500 mb-4">Liên hệ với mình</h3>
+                <p class="text-gray-700">Bạn có thể liên lạc với mình qua:</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2">
+                    <li>Email: <a href="mailto:[email-của-bạn]" class="text-blue-500 hover:underline">[email-của-bạn]</a></li>
+                    <li>GitHub: <a href="https://github.com/[username-của-bạn]" class="text-blue-500 hover:underline">[username-của-bạn]</a></li>
+                    <li>X: <a href="https://x.com/[username-x-của-bạn]" class="text-blue-500 hover:underline">[username-x-của-bạn]</a></li>
+                </ul>
+            </div>
         </div>
 
-        <!-- Free Accounts Tab -->
+        <!-- Tài khoản miễn phí Tab -->
         <div id="accounts" class="tab-content">
-            <h2 class="text-3xl font-semibold text-center mb-6">Free Accounts</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Account Card -->
-                <div class="border rounded-lg p-6 shadow-md">
-                    <h3 class="text-xl font-bold">Platform Name</h3>
-                    <p class="text-gray-600 mt-2">Username: example@domain.com</p>
-                    <p class="text-gray-600">Password: ********</p>
-                    <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Access Link</a>
+            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600">Tài khoản miễn phí</h2>
+            <!-- Accordion cho các danh mục -->
+            <div class="space-y-4">
+                <!-- ChatGPT -->
+                <div class="card">
+                    <button onclick="toggleAccordion('chatgpt')" class="accordion-button w-full text-left px-6 py-4 font-bold text-pink-600 bg-pink-50 rounded-t-lg">
+                        Tài khoản ChatGPT
+                    </button>
+                    <div id="chatgpt" class="accordion-content px-6 py-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border border-pink-300 rounded-lg p-4 bg-white">
+                                <h3 class="text-lg font-bold text-purple-500">ChatGPT Account 1</h3>
+                                <p class="text-gray-600">Tên đăng nhập: example@chatgpt.com</p>
+                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
+                            </div>
+                            <div class="border border-pink-300 rounded-lg p-4 bg-white">
+                                <h3 class="text-lg font-bold text-purple-500">ChatGPT Account 2</h3>
+                                <p class="text-gray-600">Tên đăng nhập: test@chatgpt.com</p>
+                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Add more cards as needed -->
-                <div class="border rounded-lg p-6 shadow-md">
-                    <h3 class="text-xl font-bold">Another Platform</h3>
-                    <p class="text-gray-600 mt-2">Username: test@domain.com</p>
-                    <p class="text-gray-600">Password: ********</p>
-                    <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Access Link</a>
+
+                <!-- Spotify -->
+                <div class="card">
+                    <button onclick="toggleAccordion('spotify')" class="accordion-button w-full text-left px-6 py-4 font-bold text-pink-600 bg-pink-50 rounded-t-lg">
+                        Tài khoản Spotify
+                    </button>
+                    <div id="spotify" class="accordion-content px-6 py-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border border-pink-300 rounded-lg p-4 bg-white">
+                                <h3 class="text-lg font-bold text-purple-500">Spotify Account 1</h3>
+                                <p class="text-gray-600">Tên đăng nhập: example@spotify.com</p>
+                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canva -->
+                <div class="card">
+                    <button onclick="toggleAccordion('canva')" class="accordion-button w-full text-left px-6 py-4 font-bold text-pink-600 bg-pink-50 rounded-t-lg">
+                        Tài khoản Canva
+                    </button>
+                    <div id="canva" class="accordion-content px-6 py-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border border-pink-300 rounded-lg p-4 bg-white">
+                                <h3 class="text-lg font-bold text-purple-500">Canva Account 1</h3>
+                                <p class="text-gray-600">Tên đăng nhập: example@canva.com</p>
+                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duolingo -->
+                <div class="card">
+                    <button onclick="toggleAccordion('duolingo')" class="accordion-button w-full text-left px-6 py-4 font-bold text-pink-600 bg-pink-50 rounded-t-lg">
+                        Tài khoản Duolingo
+                    </button>
+                    <div id="duolingo" class="accordion-content px-6 py-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border border-pink-300 rounded-lg p-4 bg-white">
+                                <h3 class="text-lg font-bold text-purple-500">Duolingo Account 1</h3>
+                                <p class="text-gray-600">Tên đăng nhập: example@duolingo.com</p>
+                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <p>© 2025 Dino. All rights reserved.</p>
+    <footer class="bg-purple-800 text-white text-center py-6">
+        <p>© 2025 [Tên bạn]. Tất cả quyền được bảo lưu. 💖</p>
         <div class="flex justify-center space-x-4 mt-2">
-            <a href="https://github.com/[your-github-username]" class="text-gray-300 hover:text-white">GitHub</a>
-            <a href="mailto:[your-email]" class="text-gray-300 hover:text-white">Email</a>
-            <a href="https://x.com/[your-x-username]" class="text-gray-300 hover:text-white">X</a>
+            <a href="https://github.com/[username-của-bạn]" class="text-pink-300 hover:text-white">GitHub</a>
+            <a href="mailto:[email-của-bạn]" class="text-pink-300 hover:text-white">Email</a>
+            <a href="https://x.com/[username-x-của-bạn]" class="text-pink-300 hover:text-white">X</a>
         </div>
     </footer>
 
-    <!-- JavaScript for Tab Switching -->
+    <!-- JavaScript cho Tab và Accordion -->
     <script>
         function showTab(tabId) {
-            // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
-
-            // Remove active style from all buttons
             document.querySelectorAll('.tab-link').forEach(button => {
-                button.classList.remove('bg-blue-100', 'text-blue-800');
+                button.classList.remove('bg-pink-200', 'text-pink-800');
             });
-
-            // Show selected tab content
             document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('bg-pink-200', 'text-pink-800');
+        }
 
-            // Highlight active button
-            event.currentTarget.classList.add('bg-blue-100', 'text-blue-800');
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.accordion-content').forEach(acc => {
+                acc.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
         }
     </script>
 </body>
