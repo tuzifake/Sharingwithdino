@@ -9,12 +9,13 @@
     <style>
         body {
             font-family: 'Comic Neue', cursive;
-            background: linear-gradient(135deg, #f9e1e7, #c3e6ff);
+            background: #f0f4f8; /* Màu nền nhẹ để làm nổi hiệu ứng */
             color: #333;
             transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
         body.dark {
-            background: linear-gradient(135deg, #2a1a3a, #1e3a8a);
+            background: #1a1a2e;
             color: #e0e0e0;
         }
         .tab-content {
@@ -45,12 +46,12 @@
             box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
         body.dark .card {
-            background: #3a2a4a; /* Màu tím đậm cho dark mode */
+            background: #3a2a4a;
             border-color: #ff00ff;
             box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
         }
         .file-button {
-            background: #e0f7fa; /* Màu xanh nhạt */
+            background: #e0f7fa;
             border: 1px solid #00bcd4;
             border-radius: 8px;
             padding: 8px;
@@ -69,7 +70,23 @@
         body.dark .file-button:hover {
             background: #37474f;
         }
-        #sparkles {
+        .copy-button {
+            background: #ffccbc;
+            border: 1px solid #ff8a65;
+            border-radius: 8px;
+            padding: 4px 8px;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .copy-button:hover {
+            background: #ffab91;
+        }
+        body.dark .copy-button {
+            background: #ff6e40;
+            border-color: #ffab91;
+        }
+        #sakura {
             position: fixed;
             top: 0;
             left: 0;
@@ -90,18 +107,29 @@
         .dark-toggle:hover {
             background: #ff00ff;
         }
+        .product-card {
+            background: #e0f7fa;
+            border: 2px solid #00bcd4;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 8px;
+        }
+        body.dark .product-card {
+            background: #263238;
+            border-color: #00bcd4;
+        }
     </style>
 </head>
 <body>
-    <!-- Canvas cho hiệu ứng lấp lánh -->
-    <canvas id="sparkles"></canvas>
+    <!-- Canvas cho hiệu ứng hoa anh đào rơi -->
+    <canvas id="sakura"></canvas>
 
     <!-- Nút bật/tắt sáng/tối -->
     <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Tắt sáng</button>
 
     <!-- Header -->
     <header class="text-white text-center py-12">
-        <img src="images/avatar.jpg" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
+        <img src="images/avatar.png" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
         <h1 class="text-5xl font-bold text-pink-300">[Tên bạn]</h1>
         <p class="text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
     </header>
@@ -109,12 +137,18 @@
     <!-- Navigation Tabs -->
     <nav class="bg-white shadow-lg dark:bg-gray-900">
         <div class="max-w-4xl mx-auto px-4 py-4">
-            <ul class="flex justify-center space-x-4">
+            <ul class="flex justify-center space-x-4 flex-wrap">
                 <li>
                     <button onclick="showTab('about')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Giới thiệu</button>
                 </li>
                 <li>
                     <button onclick="showTab('accounts')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Tài khoản miễn phí</button>
+                </li>
+                <li>
+                    <button onclick="showTab('support')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Ủng hộ tôi</button>
+                </li>
+                <li>
+                    <button onclick="showTab('products')" class="tab-link px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Các sản phẩm mình có bán</button>
                 </li>
             </ul>
         </div>
@@ -150,9 +184,7 @@
                         Tài khoản ChatGPT
                     </button>
                     <div id="chatgpt" class="accordion-content px-6 py-4">
-                        <div class="file-list flex flex-wrap gap-2" data-category="chatgpt">
-                            <!-- Danh sách file .txt sẽ được thêm bằng JavaScript -->
-                        </div>
+                        <div class="file-list flex flex-wrap gap-2" data-category="chatgpt"></div>
                         <div id="chatgpt-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
                 </div>
@@ -188,6 +220,58 @@
                         <div class="file-list flex flex-wrap gap-2" data-category="duolingo"></div>
                         <div id="duolingo-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
+                </div>
+
+                <!-- Hướng dẫn đăng nhập -->
+                <div class="card p-6 mt-6">
+                    <h3 class="text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Hướng dẫn đăng nhập</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Dưới đây là hướng dẫn đăng nhập cho từng dịch vụ:</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300">
+                        <li><strong>ChatGPT</strong>: Truy cập <a href="https://chat.openai.com/auth/login" class="text-blue-500 hover:underline">chat.openai.com</a>, nhập email và mật khẩu từ tài khoản trên, nhấn "Log in". Nếu cần, hoàn thành CAPTCHA.</li>
+                        <li><strong>Spotify</strong>: Vào <a href="https://www.spotify.com/login" class="text-blue-500 hover:underline">spotify.com/login</a>, nhập email và mật khẩu, nhấn "Log In".</li>
+                        <li><strong>Canva</strong>: Truy cập <a href="https://www.canva.com/login" class="text-blue-500 hover:underline">canva.com/login</a>, nhập email và mật khẩu, nhấn "Log in". Có thể cần chọn "Continue with email".</li>
+                        <li><strong>Duolingo</strong>: Vào <a href="https://www.duolingo.com" class="text-blue-500 hover:underline">duolingo.com</a>, nhấn "Login", nhập email và mật khẩu, nhấn "Log In".</li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Lưu ý: Đừng thay đổi mật khẩu để mọi người cùng sử dụng nhé! 💖</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ủng hộ tôi Tab -->
+        <div id="support" class="tab-content">
+            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Ủng hộ tôi</h2>
+            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200">
+                Nếu bạn thấy trang web này hữu ích và muốn ủng hộ mình để duy trì hoạt động, bạn có thể giúp mình qua các cách sau nhé! 🌸
+            </p>
+            <div class="card p-6">
+                <h3 class="text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Thông tin ủng hộ</h3>
+                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+                    <li><strong>Chuyển khoản ngân hàng</strong>: [Tên ngân hàng], Số tài khoản: [Số tài khoản], Chủ tài khoản: [Tên bạn].</li>
+                    <li><strong>Ví Momo</strong>: Số điện thoại: [Số điện thoại], Tên: [Tên bạn].</li>
+                    <li><strong>PayPal</strong>: <a href="https://paypal.me/[username-paypal]" class="text-blue-500 hover:underline">[username-paypal]</a>.</li>
+                </ul>
+                <p class="text-gray-700 dark:text-gray-300 mt-4">Cảm ơn bạn nhiều lắm! Mọi sự ủng hộ đều giúp mình có thêm động lực chia sẻ nhiều hơn! 💖</p>
+            </div>
+        </div>
+
+        <!-- Các sản phẩm mình có bán Tab -->
+        <div id="products" class="tab-content">
+            <h2 class="text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Các sản phẩm mình có bán</h2>
+            <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200">
+                Dưới đây là một số sản phẩm mình đang bán. Nếu bạn quan tâm, hãy liên hệ mình qua email hoặc X nhé! 🌟
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="product-card">
+                    <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Sticker anime dễ thương</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Bộ sticker in hình các nhân vật anime, dán laptop, điện thoại cực xinh. Giá: 50.000 VNĐ/bộ.</p>
+                </div>
+                <div class="product-card">
+                    <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Móc khóa acrylic</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Móc khóa in hình nhân vật anime, bền đẹp, kèm dây đeo. Giá: 30.000 VNĐ/cái.</p>
+                </div>
+                <div class="product-card">
+                    <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Tài khoản premium</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Tài khoản premium Canva, Spotify, v.v., giá siêu rẻ. Liên hệ để biết thêm chi tiết!</p>
                 </div>
             </div>
         </div>
@@ -243,41 +327,56 @@
             document.querySelector('.dark-toggle').textContent = '☀️ Bật sáng';
         }
 
-        // Hiệu ứng lấp lánh
-        const canvas = document.getElementById('sparkles');
+        // Hiệu ứng hoa anh đào rơi
+        const canvas = document.getElementById('sakura');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const particles = [];
+        const petals = [];
         for (let i = 0; i < 50; i++) {
-            particles.push({
+            petals.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                size: Math.random() * 5 + 2,
-                speedX: Math.random() * 0.5 - 0.25,
-                speedY: Math.random() * 0.5 - 0.25,
-                opacity: Math.random() * 0.5 + 0.3
+                size: Math.random() * 10 + 5,
+                speedX: Math.random() * 1 - 0.5,
+                speedY: Math.random() * 2 + 1,
+                rotation: Math.random() * 360,
+                rotationSpeed: Math.random() * 2 - 1
             });
         }
 
-        function animate() {
+        function drawPetal(petal) {
+            ctx.save();
+            ctx.translate(petal.x, petal.y);
+            ctx.rotate((petal.rotation * Math.PI) / 180);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.bezierCurveTo(-petal.size / 2, -petal.size / 2, -petal.size, petal.size / 2, 0, petal.size);
+            ctx.bezierCurveTo(petal.size, petal.size / 2, petal.size / 2, -petal.size / 2, 0, 0);
+            ctx.fillStyle = 'rgba(255, 182, 193, 0.8)';
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function animatePetals() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 182, 193, ${p.opacity})`;
-                ctx.fill();
+            petals.forEach(p => {
+                drawPetal(p);
                 p.x += p.speedX;
                 p.y += p.speedY;
+                p.rotation += p.rotationSpeed;
+                if (p.y > canvas.height) {
+                    p.y = -p.size;
+                    p.x = Math.random() * canvas.width;
+                }
                 if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animatePetals);
         }
-        animate();
+        animatePetals();
 
-        // Danh sách file .txt (giả lập vì không thể truy cập trực tiếp file trên GitHub Pages)
+        // Danh sách file .txt (giả lập)
         const fileLists = {
             chatgpt: ['account1.txt', 'account2.txt'],
             spotify: ['account1.txt'],
@@ -298,10 +397,9 @@
             });
         });
 
-        // Hiển thị nội dung file (giả lập nội dung vì không thể đọc file trực tiếp)
+        // Hiển thị nội dung file với nút copy
         function showFileContent(category, file) {
             const contentDiv = document.getElementById(`${category}-content`);
-            // Giả lập nội dung file (thay thế bằng API hoặc dữ liệu thực tế nếu có)
             const fakeContent = {
                 'chatgpt/account1.txt': `Tên đăng nhập: user1@chatgpt.com\nLink truy cập: https://chatgpt.com/login`,
                 'chatgpt/account2.txt': `Tên đăng nhập: user2@chatgpt.com\nLink truy cập: https://chatgpt.com/login`,
@@ -310,7 +408,14 @@
                 'duolingo/account1.txt': `Tên đăng nhập: user1@duolingo.com\nLink truy cập: https://duolingo.com/login`
             };
             const content = fakeContent[`${category}/${file}`] || 'Không tìm thấy nội dung file.';
-            contentDiv.textContent = content;
+            contentDiv.innerHTML = `<pre>${content}</pre><button class="copy-button" onclick="copyToClipboard('${content}')">Copy</button>`;
+        }
+
+        // Hàm copy nội dung
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Đã sao chép nội dung!');
+            });
         }
     </script>
 </body>
