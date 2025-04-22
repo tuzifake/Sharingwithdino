@@ -29,11 +29,7 @@
             transition: max-height 0.3s ease;
         }
         .accordion-content.active {
-            max-height: 1000px; /* Điều chỉnh nếu cần */
-        }
-        header {
-            background: url('https://i.imgur.com/5jZ8k9s.jpg') no-repeat center/cover;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            max-height: 1000px;
         }
         .tab-link, .accordion-button {
             transition: transform 0.3s ease, background 0.3s ease;
@@ -43,15 +39,35 @@
             background-color: #ffccff !important;
         }
         .card {
-            background: rgba(255, 255, 255, 0.9);
+            background: #fce7f3; /* Màu hồng nhạt */
             border: 2px solid #ff69b4;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
         body.dark .card {
-            background: rgba(30, 30, 50, 0.9);
+            background: #3a2a4a; /* Màu tím đậm cho dark mode */
             border-color: #ff00ff;
             box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        }
+        .file-button {
+            background: #e0f7fa; /* Màu xanh nhạt */
+            border: 1px solid #00bcd4;
+            border-radius: 8px;
+            padding: 8px;
+            margin: 4px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .file-button:hover {
+            transform: scale(1.03);
+            background: #b2ebf2;
+        }
+        body.dark .file-button {
+            background: #263238;
+            border-color: #00bcd4;
+        }
+        body.dark .file-button:hover {
+            background: #37474f;
         }
         #sparkles {
             position: fixed;
@@ -85,7 +101,7 @@
 
     <!-- Header -->
     <header class="text-white text-center py-12">
-        <img src="images/images/IMG_20250422_105512_046.jpg" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
+        <img src="images/avatar.png" alt="Ảnh đại diện" class="rounded-full w-36 h-36 mx-auto mb-4 border-4 border-pink-400">
         <h1 class="text-5xl font-bold text-pink-300">[Tên bạn]</h1>
         <p class="text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
     </header>
@@ -134,18 +150,10 @@
                         Tài khoản ChatGPT
                     </button>
                     <div id="chatgpt" class="accordion-content px-6 py-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="border border-pink-300 rounded-lg p-4 bg-white dark:bg-gray-700">
-                                <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">ChatGPT Account 1</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Tên đăng nhập: example@chatgpt.com</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
-                            </div>
-                            <div class="border border-pink-300 rounded-lg p-4 bg-white dark:bg-gray-700">
-                                <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">ChatGPT Account 2</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Tên đăng nhập: test@chatgpt.com</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
-                            </div>
+                        <div class="file-list flex flex-wrap gap-2" data-category="chatgpt">
+                            <!-- Danh sách file .txt sẽ được thêm bằng JavaScript -->
                         </div>
+                        <div id="chatgpt-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
                 </div>
 
@@ -155,13 +163,8 @@
                         Tài khoản Spotify
                     </button>
                     <div id="spotify" class="accordion-content px-6 py-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="border border-pink-300 rounded-lg p-4 bg-white dark:bg-gray-700">
-                                <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Spotify Account 1</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Tên đăng nhập: example@spotify.com</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
-                            </div>
-                        </div>
+                        <div class="file-list flex flex-wrap gap-2" data-category="spotify"></div>
+                        <div id="spotify-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
                 </div>
 
@@ -171,13 +174,8 @@
                         Tài khoản Canva
                     </button>
                     <div id="canva" class="accordion-content px-6 py-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="border border-pink-300 rounded-lg p-4 bg-white dark:bg-gray-700">
-                                <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Canva Account 1</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Tên đăng nhập: example@canva.com</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
-                            </div>
-                        </div>
+                        <div class="file-list flex flex-wrap gap-2" data-category="canva"></div>
+                        <div id="canva-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
                 </div>
 
@@ -187,13 +185,8 @@
                         Tài khoản Duolingo
                     </button>
                     <div id="duolingo" class="accordion-content px-6 py-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="border border-pink-300 rounded-lg p-4 bg-white dark:bg-gray-700">
-                                <h3 class="text-lg font-bold text-purple-500 dark:text-purple-300">Duolingo Account 1</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Tên đăng nhập: example@duolingo.com</p>
-                                <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Link truy cập</a>
-                            </div>
-                        </div>
+                        <div class="file-list flex flex-wrap gap-2" data-category="duolingo"></div>
+                        <div id="duolingo-content" class="mt-4 text-gray-600 dark:text-gray-300"></div>
                     </div>
                 </div>
             </div>
@@ -210,7 +203,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript cho Tab, Accordion, Dark Mode, và Hiệu ứng -->
+    <!-- JavaScript -->
     <script>
         // Tab Switching
         function showTab(tabId) {
@@ -283,6 +276,42 @@
             requestAnimationFrame(animate);
         }
         animate();
+
+        // Danh sách file .txt (giả lập vì không thể truy cập trực tiếp file trên GitHub Pages)
+        const fileLists = {
+            chatgpt: ['account1.txt', 'account2.txt'],
+            spotify: ['account1.txt'],
+            canva: ['account1.txt'],
+            duolingo: ['account1.txt']
+        };
+
+        // Hiển thị danh sách file khi mở accordion
+        document.querySelectorAll('.file-list').forEach(list => {
+            const category = list.getAttribute('data-category');
+            const files = fileLists[category] || [];
+            files.forEach(file => {
+                const button = document.createElement('button');
+                button.classList.add('file-button');
+                button.textContent = file;
+                button.onclick = () => showFileContent(category, file);
+                list.appendChild(button);
+            });
+        });
+
+        // Hiển thị nội dung file (giả lập nội dung vì không thể đọc file trực tiếp)
+        function showFileContent(category, file) {
+            const contentDiv = document.getElementById(`${category}-content`);
+            // Giả lập nội dung file (thay thế bằng API hoặc dữ liệu thực tế nếu có)
+            const fakeContent = {
+                'chatgpt/account1.txt': `Tên đăng nhập: user1@chatgpt.com\nLink truy cập: https://chatgpt.com/login`,
+                'chatgpt/account2.txt': `Tên đăng nhập: user2@chatgpt.com\nLink truy cập: https://chatgpt.com/login`,
+                'spotify/account1.txt': `Tên đăng nhập: user1@spotify.com\nLink truy cập: https://spotify.com/login`,
+                'canva/account1.txt': `Tên đăng nhập: user1@canva.com\nLink truy cập: https://canva.com/login`,
+                'duolingo/account1.txt': `Tên đăng nhập: user1@duolingo.com\nLink truy cập: https://duolingo.com/login`
+            };
+            const content = fakeContent[`${category}/${file}`] || 'Không tìm thấy nội dung file.';
+            contentDiv.textContent = content;
+        }
     </script>
 </body>
 </html>
