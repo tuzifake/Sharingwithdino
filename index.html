@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi, I'm [Your Name]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white text-center py-10">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto mb-4">
+        <h1 class="text-4xl font-bold">[Your Name]</h1>
+        <p class="text-lg mt-2">Welcome to my personal page!</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <ul class="flex justify-center space-x-4">
+                <li>
+                    <button onclick="showTab('about')" class="tab-link px-4 py-2 text-blue-600 font-semibold hover:bg-blue-100 rounded">About Me</button>
+                </li>
+                <li>
+                    <button onclick="showTab('accounts')" class="tab-link px-4 py-2 text-blue-600 font-semibold hover:bg-blue-100 rounded">Free Accounts</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <section class="max-w-4xl mx-auto py-10 px-4">
+        <!-- About Me Tab -->
+        <div id="about" class="tab-content active">
+            <h2 class="text-3xl font-semibold text-center mb-6">About Me</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Hi! I'm [Your Name], a [your profession, e.g., student/developer]. I love sharing knowledge and resources with the community. This page is where I introduce myself and share free accounts for various platforms to help others.
+            </p>
+        </div>
+
+        <!-- Free Accounts Tab -->
+        <div id="accounts" class="tab-content">
+            <h2 class="text-3xl font-semibold text-center mb-6">Free Accounts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Account Card -->
+                <div class="border rounded-lg p-6 shadow-md">
+                    <h3 class="text-xl font-bold">Platform Name</h3>
+                    <p class="text-gray-600 mt-2">Username: example@domain.com</p>
+                    <p class="text-gray-600">Password: ********</p>
+                    <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Access Link</a>
+                </div>
+                <!-- Add more cards as needed -->
+                <div class="border rounded-lg p-6 shadow-md">
+                    <h3 class="text-xl font-bold">Another Platform</h3>
+                    <p class="text-gray-600 mt-2">Username: test@domain.com</p>
+                    <p class="text-gray-600">Password: ********</p>
+                    <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Access Link</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>© 2025 [Your Name]. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="https://github.com/[your-github-username]" class="text-gray-300 hover:text-white">GitHub</a>
+            <a href="mailto:[your-email]" class="text-gray-300 hover:text-white">Email</a>
+            <a href="https://x.com/[your-x-username]" class="text-gray-300 hover:text-white">X</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active style from all buttons
+            document.querySelectorAll('.tab-link').forEach(button => {
+                button.classList.remove('bg-blue-100', 'text-blue-800');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Highlight active button
+            event.currentTarget.classList.add('bg-blue-100', 'text-blue-800');
+        }
+    </script>
+</body>
+</html>
