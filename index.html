@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xin chào, mình là [Tên bạn]</title>
+    <title>Xin chào, mình là Sharii</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -38,6 +38,9 @@
         .tab-link:hover, .accordion-button:hover {
             transform: scale(1.05);
             background-color: #ffccff !important;
+        }
+        .tab-link.active {
+            background-color: #ffab91 !important; /* Màu khi nhấn */
         }
         .card {
             background: #fce7f3;
@@ -131,11 +134,14 @@
             }
             nav ul {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.75rem; /* Tăng khoảng cách giữa các nút */
             }
             .tab-link {
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 1rem;
                 font-size: 1rem;
+                background: #fce7f3 !important; /* Màu hồng nhạt */
+                color: #6b21a8 !important; /* Chữ tím đậm */
+                border-radius: 12px; /* Bo góc mềm mại */
             }
             section {
                 padding: 1.5rem 1rem;
@@ -156,6 +162,13 @@
                 font-size: 0.75rem;
             }
         }
+        @media (min-width: 641px) {
+            .tab-link {
+                background: #fce7f3 !important; /* Màu hồng nhạt */
+                color: #6b21a8 !important; /* Chữ tím đậm */
+                border-radius: 12px; /* Bo góc mềm mại */
+            }
+        }
     </style>
 </head>
 <body>
@@ -167,8 +180,9 @@
 
     <!-- Header -->
     <header class="text-white text-center py-12">
-        <img src="images/avatar.jpg" alt="Ảnh đại diện" class="rounded-full w-24 h-24 md:w-36 md:h-36 mx-auto mb-4 border-4 border-pink-400">
-        <h1 class="text-5xl md:text-5xl font-bold text-pink-300">[Tên bạn]</h1>
+        <!-- Thay avatar bằng URL -->
+        <img src="https://imgur.com/a/3Cvwrf2" alt="Ảnh đại diện" class="rounded-full w-24 h-24 md:w-36 md:h-36 mx-auto mb-4 border-4 border-pink-400">
+        <h1 class="text-5xl md:text-5xl font-bold text-pink-300">Sharii</h1>
         <p class="text-xl md:text-xl mt-2 text-yellow-200">Chào mừng đến với góc nhỏ của mình! ✨</p>
     </header>
 
@@ -177,16 +191,16 @@
         <div class="max-w-4xl mx-auto px-4 py-4">
             <ul class="flex flex-col md:flex-row justify-center gap-2 md:space-x-4">
                 <li>
-                    <button onclick="showTab('about')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Giới thiệu</button>
+                    <button onclick="showTab('about')" class="tab-link w-full md:w-auto px-6 py-3 font-bold rounded-lg">Giới thiệu</button>
                 </li>
                 <li>
-                    <button onclick="showTab('accounts')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Tài khoản miễn phí</button>
+                    <button onclick="showTab('accounts')" class="tab-link w-full md:w-auto px-6 py-3 font-bold rounded-lg">Tài khoản miễn phí</button>
                 </li>
                 <li>
-                    <button onclick="showTab('support')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Ủng hộ tôi</button>
+                    <button onclick="showTab('support')" class="tab-link w-full md:w-auto px-6 py-3 font-bold rounded-lg">Ủng hộ tôi</button>
                 </li>
                 <li>
-                    <button onclick="showTab('products')" class="tab-link w-full md:w-auto px-6 py-3 text-pink-600 font-bold bg-pink-100 rounded-lg dark:text-pink-300 dark:bg-gray-800">Các sản phẩm mình có bán</button>
+                    <button onclick="showTab('products')" class="tab-link w-full md:w-auto px-6 py-3 font-bold rounded-lg">Các sản phẩm mình có bán</button>
                 </li>
             </ul>
         </div>
@@ -198,15 +212,15 @@
         <div id="about" class="tab-content active">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Giới thiệu về mình</h2>
             <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200 text-sm md:text-base">
-                Xin chào! Mình là [Tên bạn], một [nghề nghiệp, ví dụ: sinh viên/lập trình viên]. Mình thích chia sẻ kiến thức và tài nguyên với mọi người. Trang này là nơi mình giới thiệu bản thân và chia sẻ các tài khoản miễn phí để giúp mọi người trải nghiệm các dịch vụ thú vị! 🌟
+                Xin chào! Mình là Dino, một sinh viên/lập trình viên. Mình thích chia sẻ kiến thức và tài nguyên với mọi người. Trang này là nơi mình giới thiệu bản thân và chia sẻ các tài khoản miễn phí để giúp mọi người trải nghiệm các dịch vụ thú vị! 🌟
             </p>
             <div class="card p-6">
                 <h3 class="text-xl md:text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Liên hệ với mình</h3>
                 <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Bạn có thể liên lạc với mình qua:</p>
                 <ul class="list-disc list-inside text-gray-700 mt-2 dark:text-gray-300 text-sm md:text-base">
-                    <li>Email: <a href="mailto:[email-của-bạn]" class="text-blue-500 hover:underline">[email-của-bạn]</a></li>
-                    <li>GitHub: <a href="https://github.com/[username-của-bạn]" class="text-blue-500 hover:underline">[username-của-bạn]</a></li>
-                    <li>X: <a href="https://x.com/[username-x-của-bạn]" class="text-blue-500 hover:underline">[username-x-của-bạn]</a></li>
+                    <li>Email: <a href="mailto:23016958@st.phenikaa-uni.edu.vn" class="text-blue-500 hover:underline">23016958@st.phenikaa-uni.edu.vn</a></li>
+                    <li>GitHub: <a href="https://github.com/tuzifake" class="text-blue-500 hover:underline">tuzifake</a></li>
+                    <li>Tiktok: <a href="https://tiktok.com/underc3" class="text-blue-500 hover:underline">underc3</a></li>
                 </ul>
             </div>
         </div>
@@ -284,8 +298,8 @@
             <div class="card p-6">
                 <h3 class="text-xl md:text-2xl font-bold text-pink-500 mb-4 dark:text-pink-300">Thông tin ủng hộ</h3>
                 <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm md:text-base">
-                    <li><strong>Chuyển khoản ngân hàng</strong>: [Tên ngân hàng], Số tài khoản: [Số tài khoản], Chủ tài khoản: [Tên bạn].</li>
-                    <li><strong>Ví Momo</strong>: Số điện thoại: [Số điện thoại], Tên: [Tên bạn].</li>
+                    <li><strong>Chuyển khoản ngân hàng</strong>: Vietcombank, Số tài khoản: 1033204335, Chủ tài khoản: Ngô Anh Tuấn.</li>
+                    <li><strong>Ví Momo</strong>: Số điện thoại: [Số điện thoại], Tên: Ngô Anh Tuấn.</li>
                     <li><strong>PayPal</strong>: <a href="https://paypal.me/[username-paypal]" class="text-blue-500 hover:underline">[username-paypal]</a>.</li>
                 </ul>
                 <p class="text-gray-700 dark:text-gray-300 mt-4 text-sm md:text-base">Cảm ơn bạn nhiều lắm! Mọi sự ủng hộ đều giúp mình có thêm động lực chia sẻ nhiều hơn! 💖</p>
@@ -296,7 +310,7 @@
         <div id="products" class="tab-content">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-purple-600 dark:text-purple-400">Các sản phẩm mình có bán</h2>
             <p class="text-gray-800 leading-relaxed mb-6 dark:text-gray-200 text-sm md:text-base">
-                Dưới đây là một số sản phẩm mình đang bán. Nếu bạn quan tâm, hãy liên hệ mình qua email hoặc X nhé! 🌟
+                Dưới đây là một số sản phẩm mình đang bán. Nếu bạn quan tâm, hãy liên hệ mình qua email hoặc Facebook nhé! 🌟
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="product-card">
@@ -317,9 +331,9 @@
 
     <!-- Footer -->
     <footer class="bg-purple-800 text-white text-center py-6 dark:bg-gray-900">
-        <p class="text-sm md:text-base">© 2025 [Tên bạn]. Tất cả quyền được bảo lưu. 💖</p>
+        <p class="text-sm md:text-base">© 2025 Dino. Tất cả quyền được bảo lưu. 💖</p>
         <div class="flex justify-center space-x-4 mt-2">
-            <a href="https://github.com/[username-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">GitHub</a>
+            <a href="https://github.com/tuzifake" class="text-pink-300 hover:text-white text-sm md:text-base">GitHub</a>
             <a href="mailto:[email-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">Email</a>
             <a href="https://x.com/[username-x-của-bạn]" class="text-pink-300 hover:text-white text-sm md:text-base">X</a>
         </div>
@@ -333,10 +347,10 @@
                 tab.classList.remove('active');
             });
             document.querySelectorAll('.tab-link').forEach(button => {
-                button.classList.remove('bg-pink-200', 'text-pink-800');
+                button.classList.remove('active');
             });
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('bg-pink-200', 'text-pink-800');
+            event.currentTarget.classList.add('active');
         }
 
         // Accordion Toggling
